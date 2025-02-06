@@ -1,0 +1,107 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Lab_part3",
+            "type": "ccs-debug",
+            "request": "launch",
+            "project": "Lab_part3"
+        },
+        {
+            "name": "lab3_part1",
+            "type": "ccs-debug",
+            "request": "launch",
+            "project": "lab3_part1"
+        },
+        {
+            "name": "Lab3_part2",
+            "type": "ccs-debug",
+            "request": "launch",
+            "project": "Lab3_part2"
+        },
+        {
+            "name": "Lab4",
+            "type": "ccs-debug",
+            "request": "launch",
+            "project": "Lab4"
+        },
+        {
+            "name": "Lab5",
+            "type": "ccs-debug",
+            "request": "launch",
+            "project": "Lab5"
+        },
+        {
+            "name": "Lab6",
+            "type": "ccs-debug",
+            "request": "launch",
+            "project": "Lab6"
+        },
+        {
+            "name": "Lab7",
+            "type": "ccs-debug",
+            "request": "launch",
+            "project": "Lab7"
+        },
+        {
+            "name": "Lab7_p3",
+            "type": "ccs-debug",
+            "request": "launch",
+            "project": "Lab7_p3"
+        },
+        {
+            "name": "Lab7_p4",
+            "type": "ccs-debug",
+            "request": "launch",
+            "project": "Lab7_p4"
+        },
+        {
+            "name": "Lab8_p1",
+            "type": "ccs-debug",
+            "request": "launch",
+            "project": "Lab8_p1"
+        },
+        {
+            "name": "lab8_p3",
+            "type": "ccs-debug",
+            "request": "launch",
+            "project": "lab8_p3"
+        },
+        {
+            "name": "lab8_p2",
+            "type": "ccs-debug",
+            "request": "launch",
+            "project": "lab8_p2"
+        },
+        {
+            "name": "Lab9_p1",
+            "type": "ccs-debug",
+            "request": "launch",
+            "project": "Lab9_p1"
+        },
+        {
+            "name": "Lab9part2_main.c",
+            "type": "ccs-debug",
+            "request": "launch",
+            "project": "Lab9part2_main.c"
+        },
+        {
+            "name": "Lab9part3",
+            "type": "ccs-debug",
+            "request": "launch",
+            "project": "Lab9part3"
+        },
+        {
+            "name": "Lab10_part1",
+            "type": "ccs-debug",
+            "request": "launch",
+            "project": "Lab10_part1"
+        },
+        {
+            "name": "Lab10_part2",
+            "type": "ccs-debug",
+            "request": "launch",
+            "project": "Lab10_part2"
+        }
+    ]
+}
