@@ -1,16 +1,16 @@
 //*****************************************************************************
 //*****************************    C Source Code    ***************************
 //*****************************************************************************
-//  DESIGNER NAME:  TBD
+//  DESIGNER NAME:  Ryan Miner
 //
-//       LAB NAME:  TBD
+//       LAB NAME:  Lab 10 part 1
 //
-//      FILE NAME:  main.c
+//      FILE NAME:  lab10p2_main.c
 //
 //-----------------------------------------------------------------------------
 //
 // DESCRIPTION:
-//    This program serves as a ... 
+//    This program will allow the user to pick from 4 different options using the UART. 
 //
 //*****************************************************************************
 //*****************************************************************************
@@ -46,6 +46,7 @@ void flash_leds();
 //-----------------------------------------------------------------------------
 #define ADC_CHANNEL5 (5)
 #define CIRCLE  (0xdf)
+#define ALL_LEDS (0xFFFF)
 //-----------------------------------------------------------------------------
 // Define global variables and structures here.
 // NOTE: when possible avoid using global variables
@@ -81,6 +82,8 @@ int main(void)
     while (1);
 
 } /* main */
+// This function creates a menu for the user using the printr function.
+// The user can choose from 4 different options  
 void run_lab10_part2()
 {
      bool done = false;
@@ -90,7 +93,7 @@ void run_lab10_part2()
     while(done != true)
     {
         printr("\nMenu options:");
-        printr("\n\t1. Increment count on 7-segement display");
+        printr("\n\t1. Increment count on 7-segment display");
         printr("\n\t2. Show current temperature");
         printr("\n\t3. Flash LEDs 3 times");
         printr("\n\t4. End program");
@@ -99,11 +102,11 @@ void run_lab10_part2()
        switch (input) 
        {
             case '1':
-                 printr("\nIncrement count on 7-segement display\n\r");
+                printr("\nIncrement count on 7-segment display\n\r");
                 inc_seg7(true);
                 break;
             case '2':
-                 printr("\nShowing current temperature\n\r");
+                printr("\nShowing current temperature\n\r");
                 display_temp();
                 break;
             case '3':
@@ -126,6 +129,7 @@ void run_lab10_part2()
     lcd_write_string("program stopped");
     seg7_off();
 }
+// this function gets the user input from the UART.
 char UART_SELECT()
 {
     bool done = false;
@@ -135,7 +139,6 @@ char UART_SELECT()
     
     while(done != true)
     {
-        
         character = UART_in_char();
         
         if(character == '\r')
@@ -145,9 +148,7 @@ char UART_SELECT()
         }
         else 
             if (character == '\b' && idx > 0) 
-            {
                 --idx;
-            }
             else
             {
                 ++idx;
@@ -161,6 +162,7 @@ char UART_SELECT()
     return selection;
     
 }
+// this function prints a string of characters to the serial console  
 void printr(const char *string)
 {
     while(*string != '\0')
@@ -168,6 +170,8 @@ void printr(const char *string)
         UART_out_char(*string++);
     }
 }
+// This function increment count on 7-segment display
+// and rests it to zero when it goes over nine
 void inc_seg7(bool enable)
 {
     static uint8_t idex = 0;
@@ -178,24 +182,28 @@ void inc_seg7(bool enable)
             idex = 0;
         idex++;
     }
-
-     seg7_on(seg7_number_code[idex], SEG7_DIG0_ENABLE_IDX);
+    seg7_on(seg7_number_code[idex], SEG7_DIG0_ENABLE_IDX);
 }
+// This function gets the temperature of the room and 
+// display it on the lcd in fahrenheit  
 void display_temp()
 {
     lcd_clear();
+    
     uint16_t adc = ADC0_in(ADC_CHANNEL5);
     uint16_t temp = (thermistor_calc_temperature(adc) * (9.0/5)) + 32;
-     lcd_write_string("Temp = ");
+    
+    lcd_write_string("Temp = ");
     lcd_write_byte(temp);
     lcd_write_char(CIRCLE);
     lcd_write_char('F');
 } 
+// this function flashes the LEDs three times
 void flash_leds()
 {
     for(uint8_t i = 0; i < 3; ++i)
     {
-        leds_on(0xFFFF);
+        leds_on(ALL_LEDS);
         msec_delay(500);
         leds_off();
         msec_delay(500);

@@ -1,16 +1,16 @@
 //*****************************************************************************
 //*****************************    C Source Code    ***************************
 //*****************************************************************************
-//  DESIGNER NAME:  TBD
+//  DESIGNER NAME:  Ryan Miner
 //
-//       LAB NAME:  TBD
+//       LAB NAME:  Lab 10 part 1
 //
-//      FILE NAME:  main.c
+//      FILE NAME:  lab10p1_main.c
 //
 //-----------------------------------------------------------------------------
 //
 // DESCRIPTION:
-//    This program serves as a ... 
+//    This program allows the user to type in their name in the serial console 
 //
 //*****************************************************************************
 //*****************************************************************************
@@ -64,7 +64,7 @@ int main(void)
     while (1);
 
 } /* main */
-
+// this function takes the user input of their name and prints to the lcd1602
 void run_lab10_part1()
 {
     bool done = false;
@@ -75,26 +75,26 @@ void run_lab10_part1()
     {
         character = UART_in_char();
         UART_out_char(character);
-        if(character == '\r')
+        if(character == '\r')// when the enter is pressed it reads the name to the lcd1602
         {
             character = '\0';
             buffer[idx++] = character;
             done = true;
         }
-        else  if (character == '\b') 
+        else  if (character == '\b') // allows the user to back space and fix their mistakes 
             {
-                //UART_out_char(character);
+                
                 if(idx > 0)
                     --idx;
             }
-        else {
-         buffer[idx++] = character;
-            }
+        else 
+            buffer[idx++] = character;
+            
 
                 
     }
     lcd_write_string("Name:" );
-     lcd_write_string(buffer);
+    lcd_write_string(buffer);
     lcd_set_ddram_addr(LCD_LINE2_ADDR);
     lcd_write_string("program stopped");
     
